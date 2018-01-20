@@ -1,0 +1,74 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{ECS132a, homework1}
+\author{Group 14: Davis Foster, Xin Jin, Wendy Nguyen, Serena Tan}
+\date{January 19th 2018}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem A}
+Let three cars be $C_{1}$, $C_{2}$, $C_{3}$, let $C_{1} = n$ be event that car 1 took n minutes to arrive.
+\subsection{1}
+We wish to find P(first arrive is 4 min),\\
+P(first arrive is 4 min) = P(no car arrives at 3 and exist a car arrives at 4)\\
+= P(no 3 min)P(exist 4 min $|$ no 3 min) (book 2.7, not independent)\\
+= P($C_{1}!=3$ and $C_{2}!=3$ and $C_{3}!=3$)P(exist 4 min $|$ no 3 min)\\
+= P($C_{1}!=3$)P($C_{2}!=3$)P($C_{3}!=3$)P(exist 4 min $|$ no 3 min) (book 2.6, independent)\\
+= 0.5 * 0.5 * 0.5 * P(exist 4 min $|$ no 3 min)\\
+= 0.125 * P(exist 4 min $|$ no 3 min)\\
+= 0.125 * (1 - P(no 4 min $|$ no 3 min))\\
+= 0.125 * (1 - P($C_{1}!=4$ and $C_{2}!=4$ and $C_{3}!=4$ $|$ no 3 min))\\
+= 0.125 * (1 - P($C_{1}!=4$ $|$ no 3 min)P($C_{2}!=4$ $|$ no 3 min)P($C_{3}!=4$ $|$ no 3 min)) (book 2.6, independent)\\
+= 0.125 * (1 - 0.5 * 0.5 * 0.5)\\
+= 0.109\\
+
+\subsection{2}
+We wish to find P(sum is 10),\\
+P(sum is 10) = P($C_{1}=4$ and $C_{2}=3$ and $C_{3}=3$ or $C_{1}=3$ and $C_{2}=3$ and $C_{3}=4$ or $C_{1}=3$ and $C_{2}=3$ and $C_{3}=4$)\\
+= P($C_{1}=4$ and $C_{2}=3$ and $C_{3}=3$) + P($C_{1}=3$ and $C_{2}=4$ and $C_{3}=3$) + P($C_{1}=3$ and $C_{2}=3$ and $C_{3}=4$) (book 2.4)\\
+= P($C_{1}=4$)P($C_{2}=3$)P($C_{3}=3$) + P($C_{1}=3$)P($C_{2}=4$)P($C_{3}=3$) + P($C_{1}=3$)P($C_{2}=3$)P($C_{3}=4$) (book 2.6)\\
+= 0.25 * 0.5 * 0.5 + 0.5 * 0.25 * 0.5 + 0.5 * 0.5 * 0.25\\
+= 0.188\\
+
+\subsection{2}
+We wish to find P(each is 3 min | arrive at same time),\\
+P(each is 3 min | same time) = P(each is 3 min and same time) / P(same time) (2.8, Mailing Tubes)\\
+= P(each is 3 min) / P(same time)\\
+= P($C_{1}=3$ and $C_{2}=3$ and $C_{3}=3$) / P(same time)\\
+= P($C_{1}=3$)P($C_{2}=3$)P($C_{3}=3$) / P(same time) (2.6)\\
+= 0.5 * 0.5 * 0.5 / P(same time)\\
+= 0.125 / P(same time)\\
+= 0.125 / P(each is 3 or each is 4 or each is 5)\\
+= 0.125 / (P(each is 3) + P(each is 4) + P(each is 5)) (2.4)\\
+... (we just compute P(each is n) using same methods as computing P(each is 3) above)\\
+= $0.125 / (0.5 ^ 3 + 0.25 ^ 3 + 0.25 ^ 3)$\\
+= 0.800\\
+
+\section{Problem B}
+Let $X_{m}=n$ denote n attempts happens in m epoch.\\
+We wish to find P($X_{2}>=1$ $|$ 2 attempts).\\
+
+P(2 attempts) = P($X_{1}=0$ and $X_{2}=2$ or $X_{1}=1$ and $X_{2}=1$ or $X_{1}=2$ and $X_{2}=0$)\\
+= P($X_{1}=0$ and $X_{2}=2$) + P($X_{1}=1$ and $X_{2}=1$) + P($X_{1}=2$ and $X_{2}=0$) (2.2)\\
+= P($X_{1}=0$)P($X_{2}=2|X_{1}=0$) + P($X_{1}=1$)P($X_{2}=1|X_{1}=1$) + P($X_{1}=2$)P($X_{2}=0|X_{1}=2$) (2.7)\\
+= $(1-p)^2*p^2 + 2*p*(1-p)*p + p^2*(1-p)^2$\\
+take p = 0.6\\
+= 0.403\\
+
+P($X_{2}>=1$ and 2 attempts) = P($X_{1}=0$ and $X_{2}=2$ or $X_{1}=1$ and $X_{2}=1$)\\
+= P($X_{1}=0$ and $X_{2}=2$) + P($X_{1}=1$ and $X_{2}=1$) (2.2)\\
+= $(1-p)^2*p^2+2*p*(1-p)*p$\\
+take p = 0.6\\
+= 0.346\\
+
+P($X_{2}>=1$ $|$ 2 attempts) = P($X_{2}>=1$ and 2 attempts) / P(2 attempts) (2.8, Mailing Tubes)\\
+= 0.346 / 0.403\\
+= 0.859\\
+
+\section{Problem C}
+No written details. Let codes tell.
+
+\end{document}
